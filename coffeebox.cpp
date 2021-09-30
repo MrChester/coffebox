@@ -14,6 +14,8 @@ using namespace std;
 #define PROGRESS_BAR_WIDTH 20
 #define PROGRESS_BAR_STEP 0.10
 #define PROGRESS_BAR_MAX_VALUE 100.0
+#define SERVICE_PIN_CODE 7815
+#define PIN_CODE_NUMBER_ATTEMPTS 3
 
 void printBalance(double balance);
 void printUserMenu();
