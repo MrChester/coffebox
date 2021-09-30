@@ -25,6 +25,7 @@ void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
+int enterPassword(int password);
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -236,6 +237,14 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		return true;
 	}
 
+}
+
+int enterPassword(int password)
+{
+	cout << "ENTER PIN CODE: ";
+	cin >> password;
+
+	return password;
 }
 
 void runProgressBar()
