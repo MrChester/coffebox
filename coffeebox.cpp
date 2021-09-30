@@ -17,19 +17,22 @@ using namespace std;
 #define SERVICE_PIN_CODE 7815
 #define PIN_CODE_NUMBER_ATTEMPTS 3
 
+int enterPassword(int password);
+int addEmptyCups(int emptyCups, int addCups);
+
+double addCoin();
+
+bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
+bool checkPassword();
+
 void printBalance(double balance);
 void printProceeds(double proceeds);
 void printUserMenu();
 void printServiceMenu();
 void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
-double addCoin();
-bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
 void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups);
-int enterPassword(int password);
-bool checkPassword();
 void viewEmptyCups(int emptyCups);
-int addEmptyCups(int emptyCups, int addCups);
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
