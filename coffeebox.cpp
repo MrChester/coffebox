@@ -18,6 +18,7 @@ using namespace std;
 void printBalance(double balance);
 void printUserMenu();
 void runProgressBar();
+void sleep(int milliseconds);
 
 int main()
 {
@@ -45,6 +46,27 @@ void printUserMenu()
 	cout << "| 5 - Service menu                     |" << endl;
 	cout << "| 6 - Log out                          |" << endl;
 	cout << " -------------------------------------- " << endl;
+}
+
+void runProgressBar()
+{
+	double progress = 0.0;
+	
+    while (progress <= 1.0) {
+      int pos = PROGRESS_BAR_WIDTH * progress;
+
+			for (int i = 0; i < PROGRESS_BAR_WIDTH; ++i) {
+					if (i < pos)
+						cout << ".";	
+					else
+			cout << " ";
+			}
+    	sleep(50);
+			cout << progress * PROGRESS_BAR_MAX_VALUE << " %\r";
+			cout.flush();
+			progress += PROGRESS_BAR_STEP;
+    }
+    cout << endl;
 }
 
 void sleep(int milliseconds)
