@@ -18,6 +18,7 @@ using namespace std;
 void printBalance(double balance);
 void printUserMenu();
 void printCoinMenu();
+double addCoin();
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -25,8 +26,6 @@ void sleep(int milliseconds);
 int main()
 {
   double balance = 0.00;
-
-	printCoinMenu();
 
   return 0;
 }
@@ -61,6 +60,28 @@ void printCoinMenu()
 	cout << "|      50 - 0.5BYN    20 - 0.2BYN      |" << endl;
 	cout << "|             10 - 0.1BYN              |" << endl;
 	cout << " -------------------------------------- " << endl;
+}
+
+double addCoin()
+{
+	double coin = 0;
+
+	printCoinMenu();
+
+	cout << "Deposite coin: ";
+	cin >> coin;
+
+	if (coin == 10 || coin == 20 || coin == 50){
+		return coin / 100;
+	}
+	else if (coin == 1 || coin == 2){
+		return coin;
+	}
+	else{
+		cout << "Error! Invalid coin denomination! Please deposite coins according to the menu";
+		sleep(2000);
+		return 0;
+	}
 }
 
 void runProgressBar()
