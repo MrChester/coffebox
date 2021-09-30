@@ -17,6 +17,7 @@ using namespace std;
 
 void printBalance(double balance);
 void printUserMenu();
+void printCoinMenu();
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -24,6 +25,8 @@ void sleep(int milliseconds);
 int main()
 {
   double balance = 0.00;
+
+	printCoinMenu();
 
   return 0;
 }
@@ -46,6 +49,17 @@ void printUserMenu()
 	cout << "| 4 - Order Latte (1.8)                |" << endl;
 	cout << "| 5 - Service menu                     |" << endl;
 	cout << "| 6 - Log out                          |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
+void printCoinMenu()
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "|      Available :: Denomination       |" << endl;
+	cout << " -------------------------------------- " << endl;
+	cout << "|       1 - 1BYN   2 - 2BYN            |" << endl;
+	cout << "|      50 - 0.5BYN    20 - 0.2BYN      |" << endl;
+	cout << "|             10 - 0.1BYN              |" << endl;
 	cout << " -------------------------------------- " << endl;
 }
 
