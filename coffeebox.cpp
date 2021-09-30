@@ -18,6 +18,7 @@ using namespace std;
 void printBalance(double balance);
 void printUserMenu();
 void runProgressBar();
+void clearConsole();
 void sleep(int milliseconds);
 
 int main()
@@ -67,6 +68,12 @@ void runProgressBar()
 			progress += PROGRESS_BAR_STEP;
     }
     cout << endl;
+}
+
+void clearConsole()
+{
+	cout.flush();
+	system("cls");
 }
 
 void sleep(int milliseconds)
