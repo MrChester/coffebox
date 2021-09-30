@@ -41,11 +41,11 @@ int main()
 {
 	int addCups = 0;
 	int emptyCups = 7;
-  double balance = 0.00;
+	double balance = 0.00;
 
 	runCoffeeBox(addCups, emptyCups, balance);
 
-  return 0;
+	return 0;
 }
 
 void printBalance(double balance)
@@ -113,9 +113,10 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 		printUserMenu();
 		
 		cout << " Please, select menu item: ";
-	 	cin >> menuItemNumber;
+		cin >> menuItemNumber;
 		
-		switch (menuItemNumber){
+		switch (menuItemNumber)
+		{
 			case 1:
 				proceeds += addCoin();
 				balance = proceeds;
@@ -126,12 +127,13 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 				isCoffeeDone = orderCoffee(ESPRESSO_PRICE, ESPRESSO_MENU_NUMBER, emptyCups, balance);
 				if (isCoffeeDone)
 				{
-				balance -= ESPRESSO_PRICE;
-				emptyCups--;
-				sleep(2000);
-				clearConsole();
+					balance -= ESPRESSO_PRICE;
+					emptyCups--;
+					sleep(2000);
+					clearConsole();
 				}
-				else{
+				else
+				{
 					clearConsole();
 				}
 				break;
@@ -144,18 +146,22 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 					sleep(2000);
 					clearConsole();
 				}
-				else{
+				else
+				{
 					clearConsole();
 				}
 				break;
 			case 4:
 				isCoffeeDone = orderCoffee(LATTE_PRICE, LATTE_MENU_NUMBER, emptyCups, balance);
-				if (isCoffeeDone){
+				if (isCoffeeDone)
+				{
 					balance -= LATTE_PRICE;
 					emptyCups--;
-				  sleep(2000);
-				  clearConsole();
-				}else {
+					sleep(2000);
+					clearConsole();
+				}
+				else
+				{
 					clearConsole();
 				}
 				break;
@@ -173,7 +179,8 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 				}
 				flag = false;
 				break;
-			case 6:{
+			case 6:
+			{
 				flag = false;
 				cout << "Attention! Shutdown in progress.\n";
 				sleep(500);
@@ -201,13 +208,16 @@ double addCoin()
 	cout << "Deposite coin: ";
 	cin >> coin;
 
-	if (coin == 10 || coin == 20 || coin == 50){
+	if (coin == 10 || coin == 20 || coin == 50)
+	{
 		return coin / 100;
 	}
-	else if (coin == 1 || coin == 2){
+	else if (coin == 1 || coin == 2)
+	{
 		return coin;
 	}
-	else{
+	else
+	{
 		cout << "Error! Invalid coin denomination! Please deposite coins according to the menu";
 		sleep(2000);
 		return 0;
@@ -216,7 +226,8 @@ double addCoin()
 
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 {
-	if(emptyCups < 1){
+	if(emptyCups < 1)
+	{
 		cout << "Error! Sorry, not enough cups in the CoffeeBox";
 		sleep(2000);
 		clearConsole();
@@ -224,7 +235,8 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		printUserMenu();
 		return false;
 	}
-	else if (balance < price){
+	else if (balance < price)
+	{
 		cout << "You have't deposited enough coins. Please add more coins!";
 		sleep(2000);
 		clearConsole();
@@ -232,8 +244,10 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		printUserMenu();
 		return false;
 	}
-	else{
-		switch (menuNumber){
+	else
+	{
+		switch (menuNumber)
+		{
 		case 2:
 			runProgressBar();
 			cout << "Your Espresso is done." << endl;
@@ -253,7 +267,6 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		cout << "Have a nice day!" << endl;
 		return true;
 	}
-
 }
 
 void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups)
@@ -267,9 +280,10 @@ void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups)
 		printServiceMenu();
 		
 		cout << "Please, select menu item: ";
-	 	cin >> menuItemNumber;
+		cin >> menuItemNumber;
 
-		switch (menuItemNumber){
+		switch (menuItemNumber)
+		{
 			case 1:
 				printBalance(balance);
 				sleep(2000);
@@ -321,7 +335,6 @@ void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups)
 				break;
 		}
 	}
-
 }
 
 int enterPassword(int password)
@@ -368,21 +381,23 @@ void runProgressBar()
 {
 	double progress = 0.0;
 	
-    while (progress <= 1.0) {
-      int pos = PROGRESS_BAR_WIDTH * progress;
+	while (progress <= 1.0)
+	{
+		int pos = PROGRESS_BAR_WIDTH * progress;
 
-			for (int i = 0; i < PROGRESS_BAR_WIDTH; ++i) {
-					if (i < pos)
-						cout << ".";	
-					else
-			cout << " ";
-			}
-    	sleep(50);
-			cout << progress * PROGRESS_BAR_MAX_VALUE << " %\r";
-			cout.flush();
-			progress += PROGRESS_BAR_STEP;
-    }
-    cout << endl;
+		for (int i = 0; i < PROGRESS_BAR_WIDTH; ++i) 
+		{
+			if (i < pos)
+				cout << ".";	
+			else
+				cout << " ";
+		}
+		sleep(50);
+		cout << progress * PROGRESS_BAR_MAX_VALUE << " %\r";
+		cout.flush();
+		progress += PROGRESS_BAR_STEP;
+	}
+	cout << endl;
 }
 
 void clearConsole()
