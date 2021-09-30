@@ -28,6 +28,7 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
 int enterPassword(int password);
 bool checkPassword();
 void viewEmptyCups(int emptyCups);
+int addEmptyCups(int emptyCups, int addCups);
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -282,6 +283,12 @@ bool checkPassword()
 void viewEmptyCups(int emptyCups)
 {
 	cout << "We have " << emptyCups << " empty cups!" << endl;
+}
+
+int addEmptyCups(int emptyCups, int addCups)
+{
+	emptyCups += addCups;
+	return emptyCups;
 }
 
 void runProgressBar()
