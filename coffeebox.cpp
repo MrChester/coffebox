@@ -20,6 +20,7 @@ using namespace std;
 void printBalance(double balance);
 void printProceeds(double proceeds);
 void printUserMenu();
+void printServiceMenu();
 void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
@@ -66,6 +67,17 @@ void printUserMenu()
 	cout << "| 4 - Order Latte (1.8)                |" << endl;
 	cout << "| 5 - Service menu                     |" << endl;
 	cout << "| 6 - Log out                          |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
+void printServiceMenu()
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "| 1 - View balance                     |" << endl;
+	cout << "| 2 - Withdrawal of proceeds           |" << endl;
+	cout << "| 3 - View the number of empty cups    |" << endl;
+	cout << "| 4 - Add empty cups                   |" << endl;
+	cout << "| 5 - Return to main menu              |" << endl;
 	cout << " -------------------------------------- " << endl;
 }
 
