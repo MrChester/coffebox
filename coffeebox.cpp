@@ -18,6 +18,7 @@ using namespace std;
 #define PIN_CODE_NUMBER_ATTEMPTS 3
 
 void printBalance(double balance);
+void printProceeds(double proceeds);
 void printUserMenu();
 void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
@@ -44,6 +45,15 @@ void printBalance(double balance)
 	cout << "|      Coffeebox :: Balance            |" << endl;
 	cout << " -------------------------------------- " << endl;
 	cout << "|\t     "<< fixed << setprecision(2) << balance << "  BYN                 |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
+void printProceeds(double proceeds)
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "|      Coffeebox :: Proceeds           |" << endl;
+	cout << " -------------------------------------- " << endl;
+	cout << "|\t     "<< fixed << setprecision(2) << proceeds << "  BYN                 |" << endl;
 	cout << " -------------------------------------- " << endl;
 }
 
