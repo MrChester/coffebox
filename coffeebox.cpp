@@ -13,10 +13,23 @@ using namespace std;
 #define PROGRESS_BAR_STEP 0.10
 #define PROGRESS_BAR_MAX_VALUE 100.0
 
+void printBalance(double balance);
+
 int main()
 {
-  double balance = 0.00;
+  double balance = 5.00;
+
+  printBalance(balance);
 
   cout << "ok";
   return 0;
+}
+
+void printBalance(double balance)
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "|      Coffeebox :: Balance            |" << endl;
+	cout << " -------------------------------------- " << endl;
+	cout << "|\t     "<< fixed << setprecision(2) << balance << "  BYN                 |" << endl;
+	cout << " -------------------------------------- " << endl;
 }
