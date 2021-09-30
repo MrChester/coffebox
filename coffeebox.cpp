@@ -19,6 +19,7 @@ void printBalance(double balance);
 void printUserMenu();
 void printCoinMenu();
 double addCoin();
+bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -82,6 +83,48 @@ double addCoin()
 		sleep(2000);
 		return 0;
 	}
+}
+
+bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
+{
+	if(emptyCups < 1){
+		cout << "Error! Sorry, not enough cups in the CoffeeBox";
+		sleep(2000);
+		clearConsole();
+		printBalance(balance);
+		printUserMenu();
+		return false;
+	}
+	else if (balance < price){
+		cout << "You have't deposited enough coins. Please add more coins!";
+		sleep(2000);
+		clearConsole();
+		printBalance(balance);
+		printUserMenu();
+		return false;
+	}
+	else{
+		switch (menuNumber){
+		case 2:
+			runProgressBar();
+			cout << "Your Espresso is done." << endl;
+			break;
+		case 3:
+			runProgressBar();
+			cout << "Your Capuccino is done." << endl;
+			break;
+		case 4:
+			runProgressBar();
+			cout << "Your Latte is done." << endl;
+			break;
+		default:
+			cout << "Error! You input wrong menu number. Please try again!";
+			break;
+		}
+		cout << "Have a nice day!" << endl;
+		return true;
+	}
+
 }
 
 void runProgressBar()
