@@ -25,6 +25,7 @@ void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
+void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups);
 int enterPassword(int password);
 bool checkPassword();
 void viewEmptyCups(int emptyCups);
@@ -165,6 +166,7 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 				else
 				{
 					clearConsole();
+					runServiceMenu(proceeds, balance, emptyCups, addCups);
 				}
 				flag = false;
 				break;
@@ -247,6 +249,74 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		}
 		cout << "Have a nice day!" << endl;
 		return true;
+	}
+
+}
+
+void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups)
+{
+	int menuItemNumber = 0;
+	bool flag = true;
+	int previousNumberOfEmptyCups = 0;
+	
+	while(flag)
+	{
+		printServiceMenu();
+		
+		cout << "Please, select menu item: ";
+	 	cin >> menuItemNumber;
+
+		switch (menuItemNumber){
+			case 1:
+				printBalance(balance);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 2:
+				printProceeds(proceeds);
+				sleep(2000);
+				clearConsole();
+				balance = 0;
+				printServiceMenu();
+				printBalance(balance);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 3:
+				viewEmptyCups(emptyCups);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 4:
+				cout << "Input add cups: ";
+				cin >> addCups;
+
+				previousNumberOfEmptyCups = emptyCups;
+				emptyCups = addEmptyCups(emptyCups, addCups);
+
+				if (emptyCups < 700)
+				{
+					cout << "You added " << addCups << " empty cups.";
+				}
+				else
+				{
+					cout << "Warning! The maximum number of cups [700].";
+					emptyCups = previousNumberOfEmptyCups;
+				}
+				sleep(2000);
+				clearConsole();
+				break;
+			case 5:
+				clearConsole();
+				flag = false;
+				runCoffeeBox(addCups, emptyCups, balance);
+				break;
+			default:
+				cout << "Error! Wrong menu number. Please type number again [1..5]!";
+				sleep(2000);
+				clearConsole();
+				break;
+		}
 	}
 
 }
