@@ -26,6 +26,7 @@ void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
 int enterPassword(int password);
+bool checkPassword();
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -154,6 +155,15 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 				break;
 			case 5:
 				clearConsole();
+				if (!checkPassword())
+				{
+					cout << "Error! Apparat block";
+					flag = false;
+				}
+				else
+				{
+					clearConsole();
+				}
 				flag = false;
 				break;
 			case 6:{
@@ -245,6 +255,27 @@ int enterPassword(int password)
 	cin >> password;
 
 	return password;
+}
+
+bool checkPassword()
+{
+	int password = 0;
+
+	for (int i = 1; i <= PIN_CODE_NUMBER_ATTEMPTS; i++)
+	{
+		password = enterPassword(password);
+		if (password == SERVICE_PIN_CODE)
+		{
+			return true;
+		}
+		else
+		{
+			cout << "Warning! Incorrect PIN" << endl;
+			sleep(1000);
+			clearConsole();
+		}
+	}
+	return false;
 }
 
 void runProgressBar()
