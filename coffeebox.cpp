@@ -14,14 +14,14 @@ using namespace std;
 #define PROGRESS_BAR_MAX_VALUE 100.0
 
 void printBalance(double balance);
+void printUserMenu();
 
 int main()
 {
-  double balance = 5.00;
+  double balance = 0.00;
 
-  printBalance(balance);
+  printUserMenu();
 
-  cout << "ok";
   return 0;
 }
 
@@ -31,5 +31,17 @@ void printBalance(double balance)
 	cout << "|      Coffeebox :: Balance            |" << endl;
 	cout << " -------------------------------------- " << endl;
 	cout << "|\t     "<< fixed << setprecision(2) << balance << "  BYN                 |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
+void printUserMenu()
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "| 1 - Add coin                         |" << endl;
+	cout << "| 2 - Order Espresso (1.80)            |" << endl;
+	cout << "| 3 - Order Capuccino (2.30)           |" << endl;
+	cout << "| 4 - Order Latte (1.8)                |" << endl;
+	cout << "| 5 - Service menu                     |" << endl;
+	cout << "| 6 - Log out                          |" << endl;
 	cout << " -------------------------------------- " << endl;
 }
