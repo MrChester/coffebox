@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iomanip>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -15,12 +17,11 @@ using namespace std;
 
 void printBalance(double balance);
 void printUserMenu();
+void runProgressBar();
 
 int main()
 {
   double balance = 0.00;
-
-  printUserMenu();
 
   return 0;
 }
@@ -44,4 +45,9 @@ void printUserMenu()
 	cout << "| 5 - Service menu                     |" << endl;
 	cout << "| 6 - Log out                          |" << endl;
 	cout << " -------------------------------------- " << endl;
+}
+
+void sleep(int milliseconds)
+{
+	this_thread::sleep_for(chrono::milliseconds(milliseconds));
 }
