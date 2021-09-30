@@ -14,13 +14,22 @@ using namespace std;
 #define PROGRESS_BAR_WIDTH 20
 #define PROGRESS_BAR_STEP 0.10
 #define PROGRESS_BAR_MAX_VALUE 100.0
+#define SERVICE_PIN_CODE 7815
+#define PIN_CODE_NUMBER_ATTEMPTS 3
 
 void printBalance(double balance);
+void printProceeds(double proceeds);
 void printUserMenu();
+void printServiceMenu();
 void printCoinMenu();
 void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
+void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups);
+int enterPassword(int password);
+bool checkPassword();
+void viewEmptyCups(int emptyCups);
+int addEmptyCups(int emptyCups, int addCups);
 void runProgressBar();
 void clearConsole();
 void sleep(int milliseconds);
@@ -45,6 +54,15 @@ void printBalance(double balance)
 	cout << " -------------------------------------- " << endl;
 }
 
+void printProceeds(double proceeds)
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "|      Coffeebox :: Proceeds           |" << endl;
+	cout << " -------------------------------------- " << endl;
+	cout << "|\t     "<< fixed << setprecision(2) << proceeds << "  BYN                 |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
 void printUserMenu()
 {
 	cout << " -------------------------------------- " << endl;
@@ -54,6 +72,17 @@ void printUserMenu()
 	cout << "| 4 - Order Latte (1.8)                |" << endl;
 	cout << "| 5 - Service menu                     |" << endl;
 	cout << "| 6 - Log out                          |" << endl;
+	cout << " -------------------------------------- " << endl;
+}
+
+void printServiceMenu()
+{
+	cout << " -------------------------------------- " << endl;
+	cout << "| 1 - View balance                     |" << endl;
+	cout << "| 2 - Withdrawal of proceeds           |" << endl;
+	cout << "| 3 - View the number of empty cups    |" << endl;
+	cout << "| 4 - Add empty cups                   |" << endl;
+	cout << "| 5 - Return to main menu              |" << endl;
 	cout << " -------------------------------------- " << endl;
 }
 
@@ -129,6 +158,16 @@ void runCoffeeBox(int addCups, int emptyCups, double balance)
 				break;
 			case 5:
 				clearConsole();
+				if (!checkPassword())
+				{
+					cout << "Error! Apparat block";
+					flag = false;
+				}
+				else
+				{
+					clearConsole();
+					runServiceMenu(proceeds, balance, emptyCups, addCups);
+				}
 				flag = false;
 				break;
 			case 6:{
@@ -212,6 +251,114 @@ bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 		return true;
 	}
 
+}
+
+void runServiceMenu(double proceeds, double balance, int emptyCups, int addCups)
+{
+	int menuItemNumber = 0;
+	bool flag = true;
+	int previousNumberOfEmptyCups = 0;
+	
+	while(flag)
+	{
+		printServiceMenu();
+		
+		cout << "Please, select menu item: ";
+	 	cin >> menuItemNumber;
+
+		switch (menuItemNumber){
+			case 1:
+				printBalance(balance);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 2:
+				printProceeds(proceeds);
+				sleep(2000);
+				clearConsole();
+				balance = 0;
+				printServiceMenu();
+				printBalance(balance);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 3:
+				viewEmptyCups(emptyCups);
+				sleep(2000);
+				clearConsole();
+				break;
+			case 4:
+				cout << "Input add cups: ";
+				cin >> addCups;
+
+				previousNumberOfEmptyCups = emptyCups;
+				emptyCups = addEmptyCups(emptyCups, addCups);
+
+				if (emptyCups < 700)
+				{
+					cout << "You added " << addCups << " empty cups.";
+				}
+				else
+				{
+					cout << "Warning! The maximum number of cups [700].";
+					emptyCups = previousNumberOfEmptyCups;
+				}
+				sleep(2000);
+				clearConsole();
+				break;
+			case 5:
+				clearConsole();
+				flag = false;
+				runCoffeeBox(addCups, emptyCups, balance);
+				break;
+			default:
+				cout << "Error! Wrong menu number. Please type number again [1..5]!";
+				sleep(2000);
+				clearConsole();
+				break;
+		}
+	}
+
+}
+
+int enterPassword(int password)
+{
+	cout << "ENTER PIN CODE: ";
+	cin >> password;
+
+	return password;
+}
+
+bool checkPassword()
+{
+	int password = 0;
+
+	for (int i = 1; i <= PIN_CODE_NUMBER_ATTEMPTS; i++)
+	{
+		password = enterPassword(password);
+		if (password == SERVICE_PIN_CODE)
+		{
+			return true;
+		}
+		else
+		{
+			cout << "Warning! Incorrect PIN" << endl;
+			sleep(1000);
+			clearConsole();
+		}
+	}
+	return false;
+}
+
+void viewEmptyCups(int emptyCups)
+{
+	cout << "We have " << emptyCups << " empty cups!" << endl;
+}
+
+int addEmptyCups(int emptyCups, int addCups)
+{
+	emptyCups += addCups;
+	return emptyCups;
 }
 
 void runProgressBar()
