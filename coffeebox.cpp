@@ -18,6 +18,7 @@ using namespace std;
 void printBalance(double balance);
 void printUserMenu();
 void printCoinMenu();
+void runCoffeeBox(int addCups, int emptyCups, double balance);
 double addCoin();
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance);
 void runProgressBar();
@@ -26,7 +27,11 @@ void sleep(int milliseconds);
 
 int main()
 {
+	int addCups = 0;
+	int emptyCups = 7;
   double balance = 0.00;
+
+	runCoffeeBox(addCups, emptyCups, balance);
 
   return 0;
 }
@@ -61,6 +66,88 @@ void printCoinMenu()
 	cout << "|      50 - 0.5BYN    20 - 0.2BYN      |" << endl;
 	cout << "|             10 - 0.1BYN              |" << endl;
 	cout << " -------------------------------------- " << endl;
+}
+
+void runCoffeeBox(int addCups, int emptyCups, double balance)
+{
+	double proceeds = 0.00;
+	int menuItemNumber = 0;
+	bool flag = true;
+	bool isCoffeeDone = false;
+
+	while(flag)
+	{
+		printBalance(balance);
+		printUserMenu();
+		
+		cout << " Please, select menu item: ";
+	 	cin >> menuItemNumber;
+		
+		switch (menuItemNumber){
+			case 1:
+				proceeds += addCoin();
+				balance = proceeds;
+				sleep(1000);
+				clearConsole();
+				break;
+			case 2:
+				isCoffeeDone = orderCoffee(ESPRESSO_PRICE, ESPRESSO_MENU_NUMBER, emptyCups, balance);
+				if (isCoffeeDone)
+				{
+				balance -= ESPRESSO_PRICE;
+				emptyCups--;
+				sleep(2000);
+				clearConsole();
+				}
+				else{
+					clearConsole();
+				}
+				break;
+			case 3:
+				isCoffeeDone = orderCoffee(CAPUCCINO_PRICE, CAPUCCINO_MENU_NUMBER, emptyCups, balance);
+				if (isCoffeeDone)
+				{
+					balance -= CAPUCCINO_PRICE;
+					emptyCups--;
+					sleep(2000);
+					clearConsole();
+				}
+				else{
+					clearConsole();
+				}
+				break;
+			case 4:
+				isCoffeeDone = orderCoffee(LATTE_PRICE, LATTE_MENU_NUMBER, emptyCups, balance);
+				if (isCoffeeDone){
+					balance -= LATTE_PRICE;
+					emptyCups--;
+				  sleep(2000);
+				  clearConsole();
+				}else {
+					clearConsole();
+				}
+				break;
+			case 5:
+				clearConsole();
+				flag = false;
+				break;
+			case 6:{
+				flag = false;
+				cout << "Attention! Shutdown in progress.\n";
+				sleep(500);
+				runProgressBar();
+				clearConsole();
+				cout.flush();
+				cout << "Coffee box not working." << endl;
+				break;
+			}
+			default:
+				cout << "Error! Wrong menu number. Please type number again [1..6]!";
+				sleep(2000);
+				clearConsole();
+				break;
+		}
+	}	
 }
 
 double addCoin()
