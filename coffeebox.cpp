@@ -227,7 +227,7 @@ double addCoin()
 
 bool orderCoffee(double price, int menuNumber, int emptyCups, double balance)
 {
-	if(emptyCups < 1)
+	if(emptyCups <= 0)
 	{
 		cout << "Error! Sorry, not enough cups in the CoffeeBox";
 		sleep(2000);
